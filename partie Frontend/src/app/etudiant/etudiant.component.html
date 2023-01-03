@@ -1,0 +1,117 @@
+<div class="centered">
+  <button class="btn btn-primary centered" (click)="showForm = true">
+    Cliquer pour ajouter un étudiant
+  </button>
+</div>
+
+<div *ngIf="showForm" class="form-container">
+  <form (ngSubmit)="createEtudiant(Etudiant)">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nom"
+        required
+        [(ngModel)]="Etudiant.nom"
+        name="nom"
+        #EtudiantForm="ngModel"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="prenom"> Prénom </label>
+      <input
+        type="text"
+        class="form-control"
+        id="prenom"
+        required
+        [(ngModel)]="Etudiant.prenom"
+        name="prenom"
+      />
+    </div>
+    
+    <div class="coll">
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showUpdateForm" class="form-container">
+  <form (ngSubmit)="updateEtudiant(selectedEtudiant.id, selectedEtudiant)">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nom"
+        required
+        [(ngModel)]="selectedEtudiant.nom"
+        name="nom"
+        #EtudiantForm="ngModel"
+      />
+    </div>
+    <div class="form-group">
+      <label for="prenom" placeholder=" Achraf">Prenom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="prenom"
+        required
+        [(ngModel)]="selectedEtudiant.prenom"
+        name="prenom"
+      />
+    </div>
+   
+    <div class="coll">
+      <button type="submit" class="btn btn-primary">Modifier</button>
+     
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <h1>Nos etudiants </h1>
+  <div class="card-columns">
+    <div class="card" *ngFor="let Etudiant of Etudiants">
+      <div class="card-body">
+        <!-- <p class="card-title">{{ Etudiant.id }}</p> -->
+        <p class="card-text">Nom de l'étudiant : Achraf </p>
+        <p class="card-text">Prenom de l'étudiant : Okhaya</p>
+        
+        <button
+          class="btn btn-secondary"
+          (click)="updateEtudiant(Etudiant.id, Etudiant)"
+          (click)="showUpdateForm = true; selectedEtudiant = Etudiant"
+        >
+          Modifier
+        </button>
+        <button class="btn btn-danger" (click)="deleteEtudiant(Etudiant)">
+          Supprimer
+        </button>
+      </div>
+      
+    </div>
+    <div class="card-columns">
+    <div class="card" *ngFor="let Etudiant of Etudiants">
+      <div class="card-body">
+        <!-- <p class="card-title">{{ Etudiant.id }}</p> -->
+        <p class="card-text">Nom de l'étudiant : Kevin </p>
+        <p class="card-text">Prenom de l'étudiant : desc</p>
+        
+        <button
+          class="btn btn-secondary"
+          (click)="updateEtudiant(Etudiant.id, Etudiant)"
+          (click)="showUpdateForm = true; selectedEtudiant = Etudiant"
+        >
+          Modifier
+        </button>
+        <button class="btn btn-danger" (click)="deleteEtudiant(Etudiant)">
+          Supprimer
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
